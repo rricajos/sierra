@@ -1,0 +1,163 @@
+---
+
+---
+
+<script>
+  var txtIndex = 0;
+  var txtArr = [
+    " ¿Te gustaria caminar juntos?",
+    " Comprar tu protesis a medida",
+    " Alcanzar tu peso ideal",
+    " Cambiar tu estilo de vida",
+  ];
+  var speed = 64; // Velocidad de escritura en milisegundos
+  console.log("slide-" + (txtIndex + 1));
+  function typeWriter() {
+    var index = 0;
+    var text = txtArr[txtIndex];
+    var demoElement = document.getElementById("demo");
+    // document.getElementById("slide-" + (txtIndex + 1)).scrollIntoView();
+
+    var interval = setInterval(function () {
+      if (index < text.length) {
+        demoElement.textContent += text.charAt(index);
+        index++;
+      } else {
+        clearInterval(interval); // Detener la animación cuando se completa el texto
+        setTimeout(function () {
+          // Después de que se complete la animación, comenzar a borrar el texto
+          var deleteInterval = setInterval(function () {
+            if (demoElement.textContent.length > 0) {
+              demoElement.textContent = demoElement.textContent.slice(0, -1); // Eliminar el último carácter
+            } else {
+              clearInterval(deleteInterval); // Detener la animación de borrado
+              txtIndex = (txtIndex + 1) % txtArr.length;
+              typeWriter(); // Llamar recursivamente para iniciar la animación con el siguiente texto
+            }
+          }, speed / 2); // Velocidad de borrado (la mitad de la velocidad de escritura)
+        }, 5000); // Retraso antes de comenzar a borrar el texto
+      }
+    }, speed);
+  }
+
+  // Llamar a typeWriter para iniciar la animación
+  typeWriter();
+</script>
+
+<div class="supercontainer wrapper">
+  <div class="container" style="padding:2rem">
+    <div class="text-wrapper-left ">
+      <p class="autotext">
+        <span id="demo"></span>
+      </p>
+      <h1>Reservando hoy tu cita previa con el doctor Giuseppe Sierra. Todo en 1 : Traumatologo, Ortopedista, Nutricionista, Cirujano y Entrenador con más de 30 años de experiencia</h1>
+    </div>
+    <div class=" text-wrapper-right">
+      <button>Cita Previa <i class="fas fa-external-link-alt"></i></button>
+      <ul>
+        <li>Obtendrás soporte profesional</li>
+        <li>Tu protesis a medida</li>
+        <li>Beneficio 3</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container">
+    <img
+      src="https://img.eldefinido.cl/portadas/650/2015-02-10-212TVF2097.jpg"
+      alt="asd"
+    />
+  </div>
+</div>
+
+<style is:global>
+  
+  ul {
+    padding: 0 2em 0 2em;
+  }
+  li {
+    list-style-type: disc;
+
+  }
+  h1,
+  button {
+
+  }
+
+  h1 {
+    margin: 1.5rem 0rem 3rem 0;
+  }
+  button {
+    background-color: var(--blue);
+    border-radius: 2rem;
+    padding: 1rem 2rem;
+  }
+
+  .autotext {
+    
+    position: relative;
+  
+    height: 4rem;
+  }
+  #demo {
+    color: var(--blue);
+    font-weight: bold;
+    position: absolute;
+  }
+  .supercontainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+   
+    width: 100%;
+  }
+
+  .container {
+    max-width: 50%;
+    width: 100%;
+
+    display: flex;
+    flex-flow: column nowrap;
+  
+  }
+
+  .subcontainer {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .text-wrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  @media only screen and (max-width: 1277px) {
+    .container {
+      max-width: 100%;
+      flex-flow: row wrap;
+    }
+
+    .subcontainer {
+      max-width: 50%;
+    }
+
+    .text-wrapper-left {
+      max-width: 64%;
+    }
+    .text-wrapper-right {
+      max-width: 36%;
+    }
+
+   
+  }
+
+  @media only screen and (max-width: 512px) {
+    .subcontainer {
+      max-width: 100%;
+    }
+    .text-wrapper-left, .text-wrapper-right {
+      max-width: 100%;
+    }
+    
+  }
+</style>

@@ -1,52 +1,261 @@
 ---
+import { ViewTransitions, fade } from "astro:transitions";
+import Nav from "../components/Nav.astro";
+import NavMobile from "../components/NavMobile.astro";
+import Footer from "../components/Footer.astro";
+
 interface Props {
 	title: string;
 }
 
-const { title } = Astro.props;
+const { title } = Astro.props as Props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" transition:animate={fade({ duration: "0.2s" })}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/sierra/favicon.svg" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+		/>
+
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<ViewTransitions />
+		<!-- Reset Pro -->
+		<style></style>
 	</head>
 	<body>
+		<Nav />
+		<NavMobile />
 		<slot />
+		<Footer />
+		
 	</body>
 </html>
 
+
 <style is:global>
+
+	@charset "UTF-8";
+	/*
+
+Con este reset vamos a resolver:
+	👉 Unificar el uso de Custom Properties
+	👉 Problemas de box-model más generales
+	👉 Problemas con imagenes, vídeos e iconos svg
+	👉 Problemas con tipografías y etiquetas input en formularios
+	👉 Unificar la tipografía de todas las etiquetas de una web
+
+*/
+	/* Aquí definimos las Custom properties */
 	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
+		--green: #66ff00;
+		--blue: #0066ff;
+		--white: #ececec;
+		--black: #222;
+		/* Tipografía */
+		--tipo-principal: Helvetica, Arial, sans-serif;
+		--tipo-secundaria: Verdana;
+		--mxw: 1280px;
 	}
+	/* Modo claro */
+	.light-mode {
+		--black: #222;
+		--white: #ececec;
+	}
+
+	/* Modo oscuro */
+	.dark-mode {
+		--black: #ececec;
+		--white: #222;
+	}
+
+	/* Las adaptamos al modo oscuro */
+	@media (prefers-color-scheme: dark) {
+		:root {
+			--black: #ececec;
+			--white: #222;
+		}
+	}
+	/* Opcional */
+	/* Configuramos si un usuario ha activado el modo alto contraste. (WD) */
+	/* Opcional */
+	/* Desactivamos los animations en el caso de que el usuario haya configurado el modo sin animation */
+	@media (prefers-reduced-motion: reduce) {
+		* {
+			-webkit-animation: none !important;
+			animation: none !important;
+			-webkit-transition: none !important;
+			transition: none !important;
+		}
+	}
+	/* Reseteamos los margin y paddings de todas las etiquetas */
+	* {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+		vertical-align: baseline;
+	}
+
+	/* Evitamos problemas con las imagenes */
+	img,
+	picture,
+	video,
+	iframe,
+	figure {
+		max-width: 100%;
+		width: 100%;
+		display: block;
+		/* opcional */
+		-o-object-fit: cover;
+		object-fit: cover;
+		/* opcional */
+		-o-object-position: center center;
+		object-position: center center;
+	}
+
+	/* Reseteamos los enlaces para funcionar como cajas... */
+	a {
+		display: block;
+		text-decoration: none;
+		color: inherit;
+		font-size: inherit;
+	}
+
+	/* ... excepto los que se encuentran en párrafos */
+	p a {
+		display: inline;
+	}
+
+	/* Quitamos los puntos de los <li> */
+	li {
+		list-style-type: none;
+	}
+
+	/* Configuramos anclas suaves */
 	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
+		scroll-behavior: smooth;
 	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
+
+	/* Desactivamos estilos por defecto de las principales etiquetas de texto */
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p,
+	span,
+	a,
+	strong,
+	blockquote,
+	i,
+	b,
+	u,
+	em {
+		font-size: 1em;
+		font-weight: inherit;
+		font-style: inherit;
+		text-decoration: none;
+		color: inherit;
 	}
+
+	/* Evitamos problemas con los pseudoelementos de quotes */
+	blockquote:before,
+	blockquote:after,
+	q:before,
+	q:after {
+		content: "";
+		content: none;
+	}
+
+	/* Configuramos el texto que seleccionamos */
+	::-moz-selection {
+		background-color: var(--black);
+		color: var(--white);
+	}
+	::selection {
+		background-color: var(--black);
+		color: var(--white);
+	}
+
+	/* Nivelamos problemas de tipografías y colocación de formularios */
+	form,
+	input,
+	textarea,
+	select,
+	button,
+	label {
+		font-family: inherit;
+		font-size: inherit;
+		-webkit-hyphens: auto;
+		-ms-hyphens: auto;
+		hyphens: auto;
+		background-color: transparent;
+		color: inherit;
+		display: block;
+		/* opcional */
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+	}
+
+	/* Reseteamos las tablas */
+	table,
+	tr,
+	td {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+
+	/* Evitamos problemas con los SVG */
+	svg {
+		width: 100%;
+		display: block;
+		fill: currentColor;
+	}
+
+	/* (Probándolo, no usar en producción) En el caso de añadir una  */
+	/* p svg{
+display: inline;
+width: initial;
+} */
+	/* Configuramos la tipografía para toda la web */
+	body {
+		min-height: 100vh;
+		font-size: 100%;
+		font-family: var(--tipo-principal);
+		color: var(--black);
+		background-color: var(--white);
+		/* opcional */
+		line-height: 1.4em;
+		/* opcional */
+		-webkit-hyphens: auto;
+		-ms-hyphens: auto;
+		hyphens: auto;
+		/* opcional */
+		font-smooth: always;
+		/* opcional */
+		-webkit-font-smoothing: antialiased;
+		/* opcional */
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+
+</style>
+
+<style is:global>
+	.wrapper {
+		max-width: var(--mxw);
+		width: 100%;
+		margin-inline: auto;
+	}
+
 </style>

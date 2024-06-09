@@ -1,0 +1,103 @@
+<nav>
+  <div id="desktop-menu" class="wrapper">
+    <div>
+      <p>
+        <i class="fas fa-user-doctor"></i>
+        Giuseppe Sierra
+      </p>
+    </div>
+    <div class="nav-wrapper-right">
+      <a href="/sierra/" class="active left-home"
+        ><i class="fas fa-coffee"></i> Consultas</a
+      >
+      <a href="/sierra/tienda"><i class="fas fa-shopping-cart"></i> Tienda</a>
+      <a href="/sierra/podcast"><i class="fas fa-headphones"></i> Podcast</a>
+      <a href="/sierra/blog"><i class="fas fa-blog"></i> Blog</a>
+    </div>
+  </div>
+  <svg
+    class="footer-wave-svg"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1200 100"
+    preserveAspectRatio="none"
+  >
+    <path
+      class="footer-wave-path"
+      d="M851.8,100c125,0,288.3-45,348.2-64V0H0v44c3.7-1,7.3-1.9,11-2.9C80.7,22,151.7,10.8,223.5,6.3C276.7,2.9,330,4,383,9.8 c52.2,5.7,103.3,16.2,153.4,32.8C623.9,71.3,726.8,100,851.8,100z"
+    ></path>
+  </svg>
+</nav>
+
+<style>
+  nav {
+    background-color: #027b9a;
+  }
+  .wrapper {
+    padding: 2rem 1rem;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+
+  .nav-wrapper-right {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+
+  p,
+  a {
+    text-decoration: none;
+    margin: 0 1rem;
+    padding: 1rem;
+    font-size: 1.3rem;
+    text-wrap: nowrap;
+    letter-spacing: 0.2rem;
+    color: var(--black);
+  }
+  p {
+    margin: 0;
+    font-weight: bold;
+    color: var(--black);
+  }
+
+  a {
+  
+    border-right: 0.25rem solid #004658;
+    border-left: 0.25rem solid #004658;
+    border-radius: 0rem 0rem 0 0;
+    background: linear-gradient(to right, #004658, #004658),
+      linear-gradient(to right, #004658, #004658);
+    background-size:
+      100% 0.25rem,
+      0 0.25rem;
+    background-position:
+      100% 100%,
+      0% 0%;
+    background-repeat: no-repeat;
+
+    transition: all 500ms;
+  }
+
+  a:hover,
+  a:focus {
+    background-size:
+      0% 0.25rem,
+      100% 0.25rem;
+  }
+  svg {
+    position: absolute;
+    height: 32px;
+    background-color: #004658;
+  }
+  path {
+    color: #027b9a;
+    /* transform: scaleX(-1, 0) translate(200, 0); */
+  }
+
+  @media only screen and (max-width: 1280px) {
+    nav {
+      display: none;
+    }
+  }
+</style>

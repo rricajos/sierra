@@ -1,0 +1,151 @@
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const questions = document.querySelectorAll(".faq-question h3");
+
+    questions.forEach((question) => {
+      question.addEventListener("click", () => {
+        const parent = question.parentElement;
+        parent.classList.toggle("active");
+      });
+    });
+  });
+</script>
+<div class="supercontainer">
+  <div class="subcontainer">
+    <div class="faq-container">
+      <div class="faq">
+        <div class="faq-question">
+          <h3>¿Qué es ChatGPT?</h3>
+          <div class="faq-answer">
+            <p>
+              ChatGPT es un modelo de lenguaje desarrollado por OpenAI que puede
+              entender y generar texto en lenguaje natural.
+            </p>
+          </div>
+        </div>
+        <div class="faq-question">
+          <h3>¿Cómo funciona ChatGPT?</h3>
+          <div class="faq-answer">
+            <p>
+              ChatGPT utiliza una arquitectura de red neuronal llamada
+              Transformer para procesar y generar texto basado en los datos con
+              los que fue entrenado.
+            </p>
+          </div>
+        </div>
+        <div class="faq-question">
+          <h3>¿Para qué se puede usar ChatGPT?</h3>
+          <div class="faq-answer">
+            <p>
+              ChatGPT puede ser utilizado para una variedad de aplicaciones,
+              incluyendo asistencia en escritura, respuesta a preguntas,
+              generación de contenido, entre otros.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subcontainer">
+    <div class="faq-container">
+      <div class="faq">
+        <div class="faq-question">
+          <h3>¿Qué es ChatGPT?</h3>
+          <div class="faq-answer">
+            <p>
+              ChatGPT es un modelo de lenguaje desarrollado por OpenAI que puede
+              entender y generar texto en lenguaje natural.
+            </p>
+          </div>
+        </div>
+        <div class="faq-question">
+          <h3>¿Cómo funciona ChatGPT?</h3>
+          <div class="faq-answer">
+            <p>
+              ChatGPT utiliza una arquitectura de red neuronal llamada
+              Transformer para procesar y generar texto basado en los datos con
+              los que fue entrenado.
+            </p>
+          </div>
+        </div>
+        <div class="faq-question">
+          <h3>¿Para qué se puede usar ChatGPT?</h3>
+          <div class="faq-answer">
+            <p>
+              ChatGPT puede ser utilizado para una variedad de aplicaciones,
+              incluyendo asistencia en escritura, respuesta a preguntas,
+              generación de contenido, entre otros.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <header class="">
+    <h2>Preguntas Frecuentes</h2>
+    <p>Si todavia tienes alguna duda, aqui tienes respuestas</p>
+  </header>
+</div>
+
+<style>
+  header {
+    width: 100%;
+
+    text-align: center;
+    padding: 3rem;
+  }
+
+  h2 {
+
+    width: 100%;
+    margin: 2rem 0rem;
+  }
+
+  h3 {
+
+  }
+
+  p {
+
+  }
+
+  .faq-container {
+    background-color: var(--white);
+   
+  }
+
+  .faq {
+  }
+
+  .faq-question {
+    margin: 2rem 2rem 0 2rem;
+  }
+
+  .faq-question h3 {
+    cursor: pointer;
+    margin: 0;
+    padding: 1rem;
+    background-color: var(--blue);
+    color: var(--black);
+    border-radius: 1rem 1rem 1rem 0;
+    transition: background-color 0.3s ease;
+  }
+
+  .faq-question.active > h3 {
+    background-color: var(--green);
+    color: black;
+    font-weight: bold;
+  }
+
+  .faq-answer {
+    display: none;
+    padding: 10px;
+
+    border-left: 3px solid var(--green);
+  }
+
+  .faq-question.active .faq-answer {
+    display: block;
+  }
+</style>

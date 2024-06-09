@@ -1,0 +1,109 @@
+<script is:inline>
+
+  function toggleMenu() {
+    document.getElementById("mmenu").classList.toggle("active");
+  }
+</script>
+<nav >
+  <div id="mobile-menu">
+    <div class="menu" id="mmenu">
+      <a href="/sierra" onclick="toggleMenu();">Inicio</a>
+      <a href="/sierra/tienda" onclick="toggleMenu();">Tienda</a>
+      <a href="/sierra/podcast" onclick="toggleMenu();">Podcast</a>
+      <a href="/sierra/blog" onclick="toggleMenu();">Blog</a>
+    </div>
+    <div class="main">
+      <a href="#" onclick="toggleMenu();return false;">Menú</a>
+      <a href="/sierra/blog">Solicitar Cita</a>
+    </div>
+  </div>
+</nav>
+
+<style>
+ 
+  .menu {
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    transition: 50ms all;
+    transform: scaleY(0);
+    transform-origin: bottom;
+    background-color: rgba(0, 0, 0, 0.95);
+  }
+  .active {
+    transform: scaleY(1);
+  }
+
+  .main {
+    background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+  }
+  #mobile-menu {
+    z-index: 100;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+
+    width: 100%;
+    max-width: 100%;
+  }
+  @media only screen and (min-width: 1024px) {
+    nav {
+      display: none;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    text-wrap: nowrap;
+    letter-spacing: 0.2rem;
+    color: rgba(0, 100, 200, 1);
+  }
+
+  a {
+    background: linear-gradient(
+        to right,
+        rgba(0, 100, 200, 1),
+        rgba(0, 100, 200, 1)
+      ),
+      linear-gradient(
+        to right,
+        rgba(0, 100, 200, 1),
+        rgb(0, 255, 1),
+        rgba(0, 100, 200, 1)
+      );
+    background-size:
+      100% 0.1rem,
+      0 0.1rem;
+    background-position:
+      100% 100%,
+      0% 100%;
+    background-repeat: no-repeat;
+    text-shadow: 0 0 0rem rgba(0, 255, 0, 0.25);
+    filter: brightness(120%);
+    transition: all 500ms;
+  }
+
+  a:hover,
+  a.active {
+    text-shadow: 0 0 1rem rgba(0, 255, 0, 0.25);
+    filter: brightness(150%);
+    background-size:
+      0 0.1rem,
+      100% 0.1rem;
+  }
+</style>
